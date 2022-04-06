@@ -1,11 +1,9 @@
 import React from 'react'
 import './PostItem.css';
 
-export default function PostItem({ post }) {
+export default function PostItem({ className, post }) {
     console.log(post)
     return (
-        <div className='post'>
-            {post['username']}
-        </div>
+        <p className={className}>{post['username']}</p>
     )
 }

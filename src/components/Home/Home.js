@@ -5,7 +5,8 @@ import { useState, useEffect } from 'react';
 import * as Constants from '../../constants/core'
 import PostItem from '../PostItem/PostItem'
 
-export default function Home({ token }) {
+export default function Home({ token, currentUser }) {
+    console.log(`current user is ${currentUser}`)
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
@@ -32,8 +33,13 @@ export default function Home({ token }) {
         <div className="home-screen">
             <h1>Hello {token}</h1>
 
-            <div className='posts'>
-                {posts.map(post => <PostItem post={post} />)}
+            <div className='imessage'>
+                {posts.map(post =>
+                    <PostItem
+                        className={post['username'] === currentUser ? 'from-me' : 'from-them'}
+                        post={post}
+                        key={post} />
+                )}
             </div>
 
         </div>

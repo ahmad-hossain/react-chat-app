@@ -52,7 +52,7 @@ function App() {
 
         case Screen.Home:
             console.log(`screen is home & token: ${token}`)
-            content = <Home token={token} />
+            content = <Home token={token} currentUser={username} />
             break;
 
         default:
