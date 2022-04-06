@@ -1,0 +1,1 @@
+export const baseUrl = "https://us-central1-bluefletch-learning-assignment.cloudfunctions.net";
