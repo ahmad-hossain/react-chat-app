@@ -1,3 +1,25 @@
+
+.profile-pic-container {
+    background-size: contain;
+    background-position: center center;
+    
+
+    width: 35px;
+    height: 35px;
+    align-self: flex-end;
+    background-repeat: no-repeat;
+}
+
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.profile-pic-container.from-me {
+    order: 1;
+}
+
 p.from-them-username,
 p.from-me-username {
     font-size: 15px;
@@ -9,6 +31,8 @@ p.from-me-username {
 div.from-me-container,
 div.from-them-container {
     margin: 15px 0px;
+    display: flex;
+    gap: 10px;
 }
 
 div.from-them-container {

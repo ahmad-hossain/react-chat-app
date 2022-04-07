@@ -14,8 +14,15 @@ export default function PostItem({ className, post }: PostItemProps) {
     //todo style username (grey color, small font)
     return (
         <div className={`${className}-container`}>
-            <p className={`${className}-username`}>{post.user.username}</p>
-            <p className={className}>{post.text}</p>
+            <div className={`profile-pic-container ${className}`}>
+                <img className="profile-pic" src={post.user.profilePic} />
+            </div>
+
+            <div>
+                <p className={`${className}-username`}>{post.user.username}</p>
+                <p className={className}>{post.text}</p>
+            </div>
+
         </div>
     )
 }
