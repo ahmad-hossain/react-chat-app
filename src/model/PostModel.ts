@@ -1,4 +1,5 @@
 import User from './User'
+import Comment from './Comment'
 
 export default interface PostModel {
     text: string,
@@ -6,5 +7,5 @@ export default interface PostModel {
     createdAt: string,
     updatedAt: string,
     id: string,
-    comments: Comment[]
+    comments: {any: Comment}
 }
