@@ -9,20 +9,26 @@ function App() {
     const [screen, setScreen] = useState(Screen.Login);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [snackbarState, setSnackbarState] = useState(false);
+    const [isAuthLoading, setAuthLoading] = useState(false);
     //auth token received from POST Request
     const [token, setToken] = useState("");
     //element/screen to display
-    let content;
+    // let content;
 
     const handleLogin = () => {
         console.log(`username is ${username} and password is ${password}`);
-
-        //sign in
+        
+        setAuthLoading(true);
+        
+        // sign in
         post(
             Constants.baseUrl + "/account/login",
             JSON.stringify({ username: username, password: password })
         )
             .then(res => {
+                setAuthLoading(false)
+                
                 //if bad status code, throw error
                 if (!res.ok) {
                     throw new Error(`Error! Status ${res.status}`)
@@ -39,28 +45,46 @@ function App() {
                 setScreen(Screen.Home);
             })
             .catch(e => {
+                setSnackbarState(true)
                 console.log(e)
             })
 
+    }
+    const handleSnackbarClose = () => {
+        //remove the snackbar from screen
+        console.log("closed snackbar")
+        setSnackbarState(false)
     }
 
     switch (screen) {
         case Screen.Login:
             console.log("screen is login")
-            content = <Login onLogin={handleLogin} onUsernameChange={setUsername} onPasswordChange={setPassword} />
+            return <Login
+                onLogin={handleLogin}
+                onUsernameChange={setUsername}
+                onPasswordChange={setPassword}
+                snackbarState={snackbarState}
+                onSnackbarClose={handleSnackbarClose}
+                isAuthLoading={isAuthLoading} />
             break;
 
         case Screen.Home:
             console.log(`screen is home & token: ${token}`)
-            content = <Home token={token} currentUser={username} />
+            return <Home token={token} currentUser={username} />
             break;
 
         default:
-            content = <Login onLogin={handleLogin} onUsernameChange={setUsername} onPasswordChange={setPassword} />
+            return <Login
+                onLogin={handleLogin}
+                onUsernameChange={setUsername}
+                onPasswordChange={setPassword}
+                snackbarState={snackbarState}
+                onSnackbarClose={handleSnackbarClose}
+                isAuthLoading={isAuthLoading} />
             break;
     }
 
-    return (content)
+
 }
 
 export default App;

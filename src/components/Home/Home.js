@@ -17,8 +17,7 @@ export default function Home({ token, currentUser }) {
             'authorization': token
         }
         get(
-            Constants.baseUrl + "/feed?limit=5",
-            JSON.stringify({ limit: 2 }),
+            Constants.baseUrl + "/feed",
             headers
         )
             .then(res => res.json())
@@ -36,17 +35,16 @@ export default function Home({ token, currentUser }) {
             <div className='imessage'>
                 {posts.map(post =>
                     <PostItem
-                        className={post['username'] === currentUser ? 'from-me' : 'from-them'}
+                        className={post['user']['username'] === currentUser ? 'from-me' : 'from-them'}
                         post={post}
                         key={post} />
                 )}
             </div>
-
         </div>
     )
 }
 
-function get(url, body, headers) {
+function get(url, headers) {
     return fetch(url, {
         method: "GET",
         headers: headers
