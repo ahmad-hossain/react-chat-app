@@ -1,6 +1,6 @@
 import React from 'react'
 import './PostItem.css';
-import PostModel from '../model/PostModel'
+import PostModel from '../../model/PostModel'
 
 interface PostItemProps {
     className: string,
@@ -9,7 +9,6 @@ interface PostItemProps {
 
 export default function PostItem({ className, post }: PostItemProps) {
     console.log(post)
-
     //todo make username above bubble
     //todo style username (grey color, small font)
     return (
@@ -21,6 +20,7 @@ export default function PostItem({ className, post }: PostItemProps) {
             <div>
                 <p className={`${className}-username`}>{post.user.username}</p>
                 <p className={className}>{post.text}</p>
+                {post.comments !== undefined && <p onClick={() => console.log("p clicked")} className="load-comments">Load Comments</p>}
             </div>
 
         </div>

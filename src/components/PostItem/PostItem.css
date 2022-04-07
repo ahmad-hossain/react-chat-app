@@ -1,9 +1,15 @@
 
+.load-comments {
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
 .profile-pic-container {
     background-size: contain;
     background-position: center center;
     
-
     width: 35px;
     height: 35px;
     align-self: flex-end;

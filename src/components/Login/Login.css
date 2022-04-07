@@ -29,4 +29,6 @@ h2.sign-in {
 
 .auth-progress {
     width: 100%;
+    margin: 0;
+    padding: 0;
 }
