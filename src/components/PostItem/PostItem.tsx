@@ -26,7 +26,7 @@ export default function PostItem({ className, post }: PostItemProps) {
             <div>
                 <p className={`${className}-username`}>{post.user.username}</p>
                 <p className={className}>{post.text}</p>
-                {post.comments !== undefined && <p onClick={handleToggleComments} className="load-comments link"><a href="javascript:void(0);">{commentsExpanded ? "Collapse Comments" : "Expand Comments"}</a></p>}
+                {post.comments !== undefined && <p onClick={handleToggleComments} className="load-comments"><a href="javascript:void(0);">{commentsExpanded ? "Collapse Comments" : "Expand Comments"}</a></p>}
 
                 <ul className='comment-section'>
                     {(post.comments !== undefined && commentsExpanded) && <Comments comments={Object.values(post.comments)} />}

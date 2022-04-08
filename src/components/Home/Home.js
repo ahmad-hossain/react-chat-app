@@ -2,8 +2,10 @@ import React from 'react'
 import { Button, TextField } from '@mui/material';
 import './Home.css';
 import { useState, useEffect } from 'react';
-import * as Constants from '../../constants/core'
-import PostItem from '../PostItem/PostItem'
+import * as Constants from '../../constants/core';
+import PostItem from '../PostItem/PostItem';
+import SendIcon from '@mui/material/Icon/Icon';
+// import SendIcon from'@material-ui/icons/Menu';
 
 export default function Home({ token, currentUser }) {
     console.log(`current user is ${currentUser}`)
@@ -40,6 +42,15 @@ export default function Home({ token, currentUser }) {
                         key={post} />
                 )}
             </div>
+
+            <div className="sticky-footer">
+                <TextField className="message-input" id="outlined-basic" label="Message" variant="outlined" />
+                <Button variant="contained" endIcon={<SendIcon />}>
+                    Send
+                </Button>
+            </div>
+
+
         </div>
     )
 }

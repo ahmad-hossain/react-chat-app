@@ -1,5 +1,19 @@
+.sticky-footer {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding: 5px 10px;
+    display: flex;
+}
+
+.sticky-footer .message-input {
+    flex-grow: 1;
+}
+
 .home-screen {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .posts {
@@ -9,6 +23,8 @@
 }
 
 .imessage {
+    width: 100%;
+    flex-grow: 1;
     background-color: #fff;
     /* border: 1px solid #e5e5ea; */
     border-radius: 0.25rem;
