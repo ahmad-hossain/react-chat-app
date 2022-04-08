@@ -7,7 +7,6 @@ interface CommentProps {
 
 export default function Comments({ comments }: CommentProps) {
     if (comments !== undefined) {
-        console.log(`comments is ${comments.toString}`)
         const commentListItems = comments.map(item => <li key={item.id}>{item.text}</li>);
 
         return (

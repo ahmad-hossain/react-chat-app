@@ -1,3 +1,15 @@
+.comment-section {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    max-width: 200px;
+}
+
+.comment-section li {
+    border-left: 3px solid #248bf5;
+    padding-left: 6px;
+    margin: 6px 0px;
+}
 
 .load-comments {
     font-size: 15px;
@@ -12,8 +24,9 @@
     
     width: 35px;
     height: 35px;
-    align-self: flex-end;
+    align-self: flex-start;
     background-repeat: no-repeat;
+    margin-top: 40px;
 }
 
 .profile-pic {

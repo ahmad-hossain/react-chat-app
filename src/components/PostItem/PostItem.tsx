@@ -11,11 +11,8 @@ interface PostItemProps {
 
 export default function PostItem({ className, post }: PostItemProps) {
     const [commentsExpanded, setCommentsExpanded] = useState(false)
-
-    const handleExpandComments = () => {
-        //if comments are being expanded now
-        if (!commentsExpanded)
-            setCommentsExpanded(!commentsExpanded)
+    const handleToggleComments = () => {
+        setCommentsExpanded(!commentsExpanded)
     }
     console.log(post)
     //todo make username above bubble
@@ -29,10 +26,10 @@ export default function PostItem({ className, post }: PostItemProps) {
             <div>
                 <p className={`${className}-username`}>{post.user.username}</p>
                 <p className={className}>{post.text}</p>
-                {post.comments !== undefined && <p onClick={handleExpandComments} className="load-comments">{commentsExpanded ? "Collapse Comments" : "Expand Comments"}</p>}
+                {post.comments !== undefined && <p onClick={handleToggleComments} className="load-comments link"><a href="javascript:void(0);">{commentsExpanded ? "Collapse Comments" : "Expand Comments"}</a></p>}
 
-                <ul>
-                    {post.comments !== undefined && <Comments comments={Object.values(post.comments)} />}
+                <ul className='comment-section'>
+                    {(post.comments !== undefined && commentsExpanded) && <Comments comments={Object.values(post.comments)} />}
                 </ul>
             </div>
 
