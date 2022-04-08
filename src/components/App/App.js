@@ -70,7 +70,7 @@ function App() {
 
         case Screen.Home:
             console.log(`screen is home & token: ${token}`)
-            return <Home token={token} currentUser={username} />
+            return <Home token={token} currentUsername={username} />
             break;
 
         default:

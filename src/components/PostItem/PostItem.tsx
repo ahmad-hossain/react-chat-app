@@ -14,7 +14,7 @@ export default function PostItem({ className, post }: PostItemProps) {
     const handleToggleComments = () => {
         setCommentsExpanded(!commentsExpanded)
     }
-    console.log(post)
+    // console.log(post)
     //todo make username above bubble
     //todo style username (grey color, small font)
     return (
