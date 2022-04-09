@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Backdrop, CircularProgress, Card, Typography, CardContent } from '@mui/material';
 import './Home.css';
 import { useState, useEffect } from 'react';
 import * as Constants from '../../constants/core'
@@ -23,6 +23,7 @@ export default function Home({ token, currentUsername }: HomeProps) {
     const [newCommentText, setNewCommentText] = useState("");
     const [commentPostId, setCommentPostId] = useState("");
     const [commentPostIndex, setCommentPostIndex] = useState(-1);
+    const [postsLoading, setPostsLoading] = useState(true);
 
     const headers: HeadersInit = {
         'Content-Type': 'application/json',
@@ -38,8 +39,11 @@ export default function Home({ token, currentUsername }: HomeProps) {
         )
             .then(res => res.json())
             .then(data => {
-                console.log(`Received posts: ${data}`)
+                console.log(`Received posts: ${JSON.stringify(data)}`)
                 setPosts(data)
+
+                //posts are done loading, so set to false
+                setPostsLoading(false);
             })
 
         //GET current user and save in variable
@@ -70,7 +74,7 @@ export default function Home({ token, currentUsername }: HomeProps) {
                     data.user = currentUser;
 
                     //delete comments key if empty. Prevents 'Expand Comments' from showing
-                    if (data.comments != undefined && data.comments.length == 0) {
+                    if (data.comments !== undefined && data.comments.length === 0) {
                         delete data.comments;
                     }
 
@@ -132,6 +136,18 @@ export default function Home({ token, currentUsername }: HomeProps) {
     }
     return (
         <div className="home-screen">
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={postsLoading}
+                >
+                <Card className="card">
+                    <CardContent className="card-content">
+                        <CircularProgress color="inherit" />
+                            {"Loading Posts"}
+                    </CardContent>
+                </Card>
+            </Backdrop>
+
             <FormDialog
                 open={commentDialogOpen}
                 handleClose={handleDialogClose}
@@ -143,17 +159,17 @@ export default function Home({ token, currentUsername }: HomeProps) {
                 confirmBtnText={"Add"}
                 cancelBtnText={"Cancel"}
             />
-            <h1>Hello {token}</h1>
+            <h1>Chat</h1>
 
             <div className='imessage'>
                 {posts.map((post: PostModel, index) =>
-                        <PostItem
-                            className={post.user.username === currentUsername ? 'from-me' : 'from-them'}
-                            post={post}
-                            key={post['id']}
-                            addCommentClicked={() => addCommentClicked(post.id, index)}
-                        />
-                    )}
+                    <PostItem
+                        className={post.user.username === currentUsername ? 'from-me' : 'from-them'}
+                        post={post}
+                        key={post.id}
+                        addCommentClicked={() => addCommentClicked(post.id, index)}
+                    />
+                )}
             </div>
 
             <div className="sticky-footer">
@@ -162,7 +178,6 @@ export default function Home({ token, currentUsername }: HomeProps) {
                     Send
                 </Button>
             </div>
-
 
         </div>
     )
