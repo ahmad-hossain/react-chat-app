@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, TextField, Snackbar, Alert, LinearProgress, FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton } from '@mui/material';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 import './Login.css';
 
 interface LoginProps {
@@ -24,7 +23,7 @@ export default function ({ onLogin, onUsernameChange, onPasswordChange, snackbar
                 {isAuthLoading && <LinearProgress className='auth-progress' />}
                 <h2 className='sign-in'>Sign in</h2>
 
-                <TextField sx={{ margin: '0px 30px' }} onChange={(e) => { onUsernameChange(e.target.value) }} id="outlined-basic" label="Username" variant="outlined" />
+                <TextField sx={{ margin: '0px 30px', width: '25ch' }} onChange={(e) => { onUsernameChange(e.target.value) }} id="outlined-basic" label="Username" variant="outlined" />
 
                 <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>

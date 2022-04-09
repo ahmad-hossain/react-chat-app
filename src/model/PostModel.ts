@@ -7,5 +7,5 @@ export default interface PostModel {
     createdAt: string,
     updatedAt: string,
     id: string,
-    comments: {any: Comment}
+    comments: Comment[]
 }
