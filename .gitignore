@@ -2,6 +2,7 @@
 
 #Constants base url
 ./src/constants/
+src/constants/core.ts
 
 # dependencies
 /node_modules
