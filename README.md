@@ -19,6 +19,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Gained familiarity with using Material UI Components. These components improved the look of my app significantly.
 - Found a use for Flexbox order. I used this to order the profile picture to the right or left depending on whether it was from the signed in user or not 
 
+## What I Could Improve
+- Many times, I noticed that I had several different state variables for managing a component or screen. This could be improved by moving the independent states into a single object which holds all the states.
+- Given more time, I would have like to implement a form of architecture for this project, so that the code is more organized and easier to maintain.
+
 ## Available Scripts
 
 In the project directory, you can run:
