@@ -8,10 +8,17 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Challenges Faced
 - Didn't have a good grasp of js, ts and react basic syntax because of lack of going thoroughly through a curriculum. There were holes in my knowledge, which took extra time researching those topics.
+
 - I noticed that Javascript wasn't able to infer types for props. This led me to switch to Typescript in most of my project, which solved that problem for me.
+
 - Sometimes styles were not specific enough which affected elements all over. I was able to learn more about CSS selectors to fix this, but I would like to research more about styling with React such as whether there's a better way to style.
+
 - Docs showed incorrect result for feed post object. Docs models showed a 'username' key, but posts don't have that. They have 'user' key which maps to User object
-- One of the listed posts has a JSON of comments rather than an Array like the rest of the posts. I was able to figure this out without spending a lot of time by looking at my logs.
+
+- One of the listed posts has a JSON of comments rather than an Array like the rest of the posts. Fortunately, I was able to figure this out without spending a lot of time by looking at my logs.
+
+- My chat app displays the profile picture and username for all messages. However, when sending a new message, the API does not return a User object of the sender, leaving me with no way to display the profile picture for that post using the returned data from the POST request.<br/>
+I solved this by making a GET request for the User object of the signed in user. This request is made on navigating to the Chat Screen, just like the how the posts are loaded.
 
 ## What I Learned
 - Gained much more experience with React and learned about useState

@@ -16,14 +16,13 @@ interface HomeProps {
 export default function Home({ token, currentUsername }: HomeProps) {
     let [currentUser, setCurrentUser] = useState();
 
-    console.log(`current user is ${currentUsername}`);
     const [posts, setPosts] = useState<PostModel[]>([]);
     const [messageText, setMessageText] = useState("");
     const [commentDialogOpen, setCommentDialogOpen] = useState(false);
     const [newCommentText, setNewCommentText] = useState("");
     const [commentPostId, setCommentPostId] = useState("");
     const [commentPostIndex, setCommentPostIndex] = useState(-1);
-    const [postsLoading, setPostsLoading] = useState(true);
+    const [loadingData, setLoadingData] = useState(true);
 
     const headers: HeadersInit = {
         'Content-Type': 'application/json',
@@ -42,21 +41,20 @@ export default function Home({ token, currentUsername }: HomeProps) {
                 console.log(`Received posts: ${JSON.stringify(data)}`)
                 setPosts(data)
 
-                //posts are done loading, so set to false
-                setPostsLoading(false);
-            })
+                //GET current user and save in variable.
+                getCurrentUserJSON(headers).then(data => {
+                    console.log(`fetched user from API: ${JSON.stringify(data)}`)
+                    setCurrentUser(data)
 
-        //GET current user and save in variable
-        get(Constants.baseUrl + "/user/", headers)
-            .then(res => res.json())
-            .then(data => {
-                console.log(`currentUser is ${data} ,${JSON.stringify(data)}`);
-                setCurrentUser(data)
+                    //posts & user are done loading, so set to false
+                    setLoadingData(false);
+                })
+
             })
+            
     }, [])
 
     const onMessageChanged = (newMessage: string) => {
-        console.log("Message Changed")
         setMessageText(newMessage)
     }
     const onSendClicked = () => {
@@ -72,14 +70,9 @@ export default function Home({ token, currentUsername }: HomeProps) {
                 .then(res => res.json())
                 .then(data => {
                     console.log(`sent post is ${JSON.stringify(data)}`);
-                    
-                    if (currentUser === undefined) {
-                        console.log(`currentUser is undefined, so setting sent post user manually`)
-                        data.user = {username: currentUsername}
-                    } else {
-                        data.user = currentUser;
-                    }
-                    
+
+                    data.user = currentUser;
+
                     console.log(`sent post after adding user is ${JSON.stringify(data)}`);
 
                     //delete comments key if empty. Prevents 'Expand Comments' from showing
@@ -147,12 +140,12 @@ export default function Home({ token, currentUsername }: HomeProps) {
         <div className="home-screen">
             <Backdrop
                 sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                open={postsLoading}
-                >
+                open={loadingData}
+            >
                 <Card className="card">
                     <CardContent className="card-content">
                         <CircularProgress color="inherit" />
-                            {"Loading Posts"}
+                        {"Loading Posts"}
                     </CardContent>
                 </Card>
             </Backdrop>
@@ -205,4 +198,9 @@ const post = (url: string, headers: HeadersInit, body: BodyInit) => {
         headers: headers,
         body: body
     })
+}
+
+function getCurrentUserJSON(headers: HeadersInit) {
+    return get(Constants.baseUrl + "/user/", headers)
+        .then(res => res.json())
 }
