@@ -71,7 +71,16 @@ export default function Home({ token, currentUsername }: HomeProps) {
             fetch(Constants.baseUrl + "/feed/post", params)
                 .then(res => res.json())
                 .then(data => {
-                    data.user = currentUser;
+                    console.log(`sent post is ${JSON.stringify(data)}`);
+                    
+                    if (currentUser === undefined) {
+                        console.log(`currentUser is undefined, so setting sent post user manually`)
+                        data.user = {username: currentUsername}
+                    } else {
+                        data.user = currentUser;
+                    }
+                    
+                    console.log(`sent post after adding user is ${JSON.stringify(data)}`);
 
                     //delete comments key if empty. Prevents 'Expand Comments' from showing
                     if (data.comments !== undefined && data.comments.length === 0) {
