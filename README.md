@@ -21,6 +21,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 I solved this by making a GET request for the User object of the signed in user. This request is made on navigating to the Chat Screen, just like the how the posts are loaded.
 
 ## What I Learned
+- Learned how to use create-react-app to setup a React project
 - Gained much more experience with React and learned about useState
 - Gained experience with basic JS & Typescript. Will likely use TS in the future as well
 - Gained familiarity with using Material UI Components. These components improved the look of my app significantly.
