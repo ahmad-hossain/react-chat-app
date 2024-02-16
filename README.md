@@ -3,8 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Gif Walkthrough
-<img src="https://thumbs.gfycat.com/ImperfectSelfishArthropods-size_restricted.gif" width=350><br>
-
+<img src="https://github.com/ahmad-hossain/react-chat-app/blob/main/walkthrough.gif" width=350><br>
 
 ## Challenges Faced
 - Didn't have a good grasp of js, ts and react basic syntax because of lack of going thoroughly through a curriculum. There were holes in my knowledge, which took extra time researching those topics.
